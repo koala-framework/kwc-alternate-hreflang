@@ -1,0 +1,18 @@
+{
+    "name": "koala-framework/kwc-alternate-hreflang",
+    "description": "Koala Framework Component for adding alternate hreflang metatags",
+    "require": {
+        "koala-framework/koala-framework": "~4.0"
+    },
+    "extra": {
+        "kwf-lingohub": {
+            "account": "vivid-planet",
+            "project": "kwc-alternate-hreflang"
+        }
+    },
+    "autoload": {
+        "psr-0": {
+            "Kwc_AlternateHreflang_": ""
+        }
+    }
+}
