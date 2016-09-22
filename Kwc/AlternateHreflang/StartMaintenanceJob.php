@@ -37,7 +37,7 @@ class Kwc_AlternateHreflang_StartMaintenanceJob extends Kwf_Util_Maintenance_Job
             $text .= "\nPlease check the links.";
             $mail = new Kwf_Mail();
             $mail->setSubject($c->getDomain() . ' - ' . trlKwfStatic('alternate hreflang'));
-            $mail->addTo('test@vivid-planet.com');
+            $mail->addTo($c->getBaseProperty('alternatehreflang.emailreceiver'));
             $mail->setBodyText($text);
             $mail->send();
         }

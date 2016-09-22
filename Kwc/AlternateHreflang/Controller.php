@@ -6,8 +6,10 @@ class Kwc_AlternateHreflang_Controller extends Kwf_Controller_Action_Auto_Kwc_Gr
     protected function _initColumns()
     {
         parent::_initColumns();
+        $component = Kwf_Component_Data_Root::getInstance()->getComponentById($this->_getParam('componentId'));
+        $languages = $component->getBaseProperty('alternatehreflang.languages');
         $editor = new Kwf_Form_Field_Select();
-        $editor->setValues(Kwc_Abstract::getSetting($this->_getParam('class'), 'countries'));
+        $editor->setValues($languages);
         $editor->setAllowBlank(false);
         $this->_columns->add(new Kwf_Grid_Column('language', trlKwf('Language'), 150))
             ->setEditor($editor);

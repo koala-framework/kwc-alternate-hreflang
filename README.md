@@ -15,3 +15,11 @@ $ret['generators']['alternateHreflang'] = array(
 );
 $ret['editComponents'][] = 'alternateHreflang';
 ```
+Add to config.ini:
+```
+kwc.domains.at.alternatehreflang.languages.de-DE = Deutschland
+kwc.domains.at.alternatehreflang.emailreceiver = mhahn@improove.at
+```
+
+#### Constraints
+Doesn't support domains yet.

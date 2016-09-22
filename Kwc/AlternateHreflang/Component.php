@@ -7,10 +7,6 @@ class Kwc_AlternateHreflang_Component extends Kwc_Abstract implements Kwf_Util_M
         $ret['componentName'] = trlKwfStatic('Alternate Hreflang');
         $ret['extConfig'] = 'Kwf_Component_Abstract_ExtConfig_Grid';
         $ret['flags']['hasHeaderIncludeCode'] = true;
-        $ret['countries'] = array(
-            'de-DE' => trlKwfStatic('Germany'),
-        );
-        $ret['emailReceiver'] = null;
         return $ret;
     }
 
