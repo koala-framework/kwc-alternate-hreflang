@@ -1,7 +1,7 @@
 <?php
-class Kwc_AlternateHreflang_Controller extends Kwf_Controller_Action_Auto_Kwc_Grid
+class AlternateHreflang_Kwc_Box_Controller extends Kwf_Controller_Action_Auto_Kwc_Grid
 {
-    protected $_model = 'Kwc_AlternateHreflang_Model';
+    protected $_model = 'AlternateHreflang_Kwc_Box_Model';
 
     protected function _initColumns()
     {

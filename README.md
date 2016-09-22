@@ -10,7 +10,7 @@ Add to Root_Component:
 ```php
 $ret['generators']['alternateHreflang'] = array(
     'class' => 'Kwf_Component_Generator_Box_Static',
-    'component' => 'Kwc_AlternateHreflang_Component',
+    'component' => 'AlternateHreflang_Kwc_Box_Component',
     'inherit' => true
 );
 $ret['editComponents'][] = 'alternateHreflang';

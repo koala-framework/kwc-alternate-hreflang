@@ -1,21 +1,21 @@
 <?php
-class Kwc_AlternateHreflang_Events extends Kwc_Abstract_Events
+class AlternateHreflang_Kwc_Box_Events extends Kwc_Abstract_Events
 {
     public function getListeners()
     {
         $ret = array();
         $ret[] = array(
-            'class' => 'Kwc_AlternateHreflang_Model',
+            'class' => 'AlternateHreflang_Kwc_Box_Model',
             'event' => 'Kwf_Events_Event_Row_Updated',
             'callback' => 'onRowChange'
         );
         $ret[] = array(
-            'class' => 'Kwc_AlternateHreflang_Model',
+            'class' => 'AlternateHreflang_Kwc_Box_Model',
             'event' => 'Kwf_Events_Event_Row_Inserted',
             'callback' => 'onRowChange'
         );
         $ret[] = array(
-            'class' => 'Kwc_AlternateHreflang_Model',
+            'class' => 'AlternateHreflang_Kwc_Box_Model',
             'event' => 'Kwf_Events_Event_Row_Deleted',
             'callback' => 'onRowChange'
         );

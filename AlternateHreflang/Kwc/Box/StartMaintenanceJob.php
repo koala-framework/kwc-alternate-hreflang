@@ -1,5 +1,5 @@
 <?php
-class Kwc_AlternateHreflang_StartMaintenanceJob extends Kwf_Util_Maintenance_Job_Abstract
+class AlternateHreflang_Kwc_Box_StartMaintenanceJob extends Kwf_Util_Maintenance_Job_Abstract
 {
     public function getFrequency()
     {
@@ -10,7 +10,7 @@ class Kwc_AlternateHreflang_StartMaintenanceJob extends Kwf_Util_Maintenance_Job
     {
         $s = new Kwf_Model_Select();
         $s->whereNotEquals('url', '');
-        $links = Kwf_Model_Abstract::getInstance('Kwc_AlternateHreflang_Model')->getRows($s);
+        $links = Kwf_Model_Abstract::getInstance('AlternateHreflang_Kwc_Box_Model')->getRows($s);
         $errors = array();
         foreach ($links as $link) {
             $client = new Zend_Http_Client($link->url);

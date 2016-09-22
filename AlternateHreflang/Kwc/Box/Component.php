@@ -1,5 +1,5 @@
 <?php
-class Kwc_AlternateHreflang_Component extends Kwc_Abstract implements Kwf_Util_Maintenance_JobProviderInterface
+class AlternateHreflang_Kwc_Box_Component extends Kwc_Abstract implements Kwf_Util_Maintenance_JobProviderInterface
 {
     public static function getSettings($param = null)
     {
@@ -21,7 +21,7 @@ class Kwc_AlternateHreflang_Component extends Kwc_Abstract implements Kwf_Util_M
         $ret['links'] = array();
         $s = new Kwf_Model_Select();
         $s->whereEquals('component_id', $this->getData()->componentId);
-        $links = Kwf_Model_Abstract::getInstance('Kwc_AlternateHreflang_Model')
+        $links = Kwf_Model_Abstract::getInstance('AlternateHreflang_Kwc_Box_Model')
             ->getRows($s);
         foreach ($links as $link) {
             if ($link->url && $link->language) {
@@ -43,7 +43,7 @@ class Kwc_AlternateHreflang_Component extends Kwc_Abstract implements Kwf_Util_M
     public static function getMaintenanceJobs()
     {
         return array(
-            'Kwc_AlternateHreflang_StartMaintenanceJob',
+            'AlternateHreflang_Kwc_Box_StartMaintenanceJob',
         );
     }
 }
