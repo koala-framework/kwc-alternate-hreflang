@@ -31,12 +31,7 @@ class AlternateHreflang_Kwc_Box_Component extends Kwc_Abstract implements Kwf_Ut
                 );
             }
         }
-        $prot = 'http://';
-        if (Kwf_Util_Https::supportsHttps()) {
-            $prot = 'https://';
-        }
-        $domain = Kwf_Config::getValue('server.domain');
-        $ret['currentLink'] = $prot.$domain.$this->getData()->getPage()->url;
+        $ret['currentLink'] = $this->getData()->getPage()->getAbsoluteUrl();
         return $ret;
     }
 
