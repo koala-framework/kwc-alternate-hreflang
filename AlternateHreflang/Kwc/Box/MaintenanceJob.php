@@ -1,5 +1,5 @@
 <?php
-class AlternateHreflang_Kwc_Box_StartMaintenanceJob extends Kwf_Util_Maintenance_Job_Abstract
+class AlternateHreflang_Kwc_Box_MaintenanceJob extends Kwf_Util_Maintenance_Job_Abstract
 {
     public function getFrequency()
     {

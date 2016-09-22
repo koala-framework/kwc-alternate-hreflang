@@ -38,7 +38,7 @@ class AlternateHreflang_Kwc_Box_Component extends Kwc_Abstract implements Kwf_Ut
     public static function getMaintenanceJobs()
     {
         return array(
-            'AlternateHreflang_Kwc_Box_StartMaintenanceJob',
+            'AlternateHreflang_Kwc_Box_MaintenanceJob',
         );
     }
 }
