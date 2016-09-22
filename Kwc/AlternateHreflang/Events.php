@@ -5,17 +5,17 @@ class Kwc_AlternateHreflang_Events extends Kwc_Abstract_Events
     {
         $ret = array();
         $ret[] = array(
-            'class' => 'Kwc_Box_AlternateLinks_Model',
+            'class' => 'Kwc_AlternateHreflang_Model',
             'event' => 'Kwf_Events_Event_Row_Updated',
             'callback' => 'onRowChange'
         );
         $ret[] = array(
-            'class' => 'Kwc_Box_AlternateLinks_Model',
+            'class' => 'Kwc_AlternateHreflang_Model',
             'event' => 'Kwf_Events_Event_Row_Inserted',
             'callback' => 'onRowChange'
         );
         $ret[] = array(
-            'class' => 'Kwc_Box_AlternateLinks_Model',
+            'class' => 'Kwc_AlternateHreflang_Model',
             'event' => 'Kwf_Events_Event_Row_Deleted',
             'callback' => 'onRowChange'
         );

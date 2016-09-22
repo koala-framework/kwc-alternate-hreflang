@@ -1,10 +1,10 @@
 <?php
 class Kwc_AlternateHreflang_Component extends Kwc_Abstract implements Kwf_Util_Maintenance_JobProviderInterface
 {
-    public static function getSettings()
+    public static function getSettings($param = null)
     {
-        $ret = parent::getSettings();
-        $ret['componentName'] = trlKwfStatic('Alternate Links');
+        $ret = parent::getSettings($param);
+        $ret['componentName'] = trlKwfStatic('Alternate Hreflang');
         $ret['extConfig'] = 'Kwf_Component_Abstract_ExtConfig_Grid';
         $ret['flags']['hasHeaderIncludeCode'] = true;
         $ret['countries'] = array(
@@ -14,26 +14,18 @@ class Kwc_AlternateHreflang_Component extends Kwc_Abstract implements Kwf_Util_M
         return $ret;
     }
 
-    public static function validateSettings($settings, $componentClass)
-    {
-        parent::validateSettings($settings, $componentClass);
-        if (!$settings['emailReceiver']) {
-            throw new Kwf_Exception("emailReceiver has to be set");
-        }
-    }
-
     public function getIncludeCode()
     {
         return $this->getData();
     }
 
-    public function getTemplateVars()
+    public function getTemplateVars(Kwf_Component_Renderer_Abstract $renderer)
     {
-        $ret = parent::getTemplateVars();
+        $ret = parent::getTemplateVars($renderer);
         $ret['links'] = array();
         $s = new Kwf_Model_Select();
         $s->whereEquals('component_id', $this->getData()->componentId);
-        $links = Kwf_Model_Abstract::getInstance('Box_AlternateLinks_Model')
+        $links = Kwf_Model_Abstract::getInstance('Kwc_AlternateHreflang_Model')
             ->getRows($s);
         foreach ($links as $link) {
             if ($link->url && $link->language) {
