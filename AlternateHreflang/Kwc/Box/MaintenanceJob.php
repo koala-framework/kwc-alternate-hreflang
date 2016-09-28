@@ -37,7 +37,7 @@ class AlternateHreflang_Kwc_Box_MaintenanceJob extends Kwf_Util_Maintenance_Job_
             $text .= "\nPlease check the links.";
             $mail = new Kwf_Mail();
             $mail->setSubject($c->getDomain() . ' - alternate hreflang');
-            $mail->addTo($c->getBaseProperty('alternatehreflang.emailreceiver'));
+            $mail->addTo($c->getBaseProperty('alternateHreflang.emailreceiver'));
             $mail->setBodyText($text);
             $mail->send();
         }
