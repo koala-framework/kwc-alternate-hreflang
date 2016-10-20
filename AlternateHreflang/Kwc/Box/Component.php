@@ -7,6 +7,7 @@ class AlternateHreflang_Kwc_Box_Component extends Kwc_Abstract implements Kwf_Ut
         $ret['componentName'] = trlKwfStatic('Alternate Hreflang');
         $ret['extConfig'] = 'Kwf_Component_Abstract_ExtConfig_Grid';
         $ret['flags']['hasHeaderIncludeCode'] = true;
+        $ret['flags']['hasInjectIntoRenderedHtml'] = true;
         return $ret;
     }
 
@@ -40,5 +41,14 @@ class AlternateHreflang_Kwc_Box_Component extends Kwc_Abstract implements Kwf_Ut
         return array(
             'AlternateHreflang_Kwc_Box_MaintenanceJob',
         );
+    }
+
+    public function injectIntoRenderedHtml($html)
+    {
+        $startPos = strpos($html, '<!-- alternateHreflang -->');
+        $endPos = strpos($html, '<!-- /alternateHreflang -->') + 27;
+        return substr($html, 0, $startPos) .
+            $this->getData()->render() .
+            substr($html, $endPos);
     }
 }
