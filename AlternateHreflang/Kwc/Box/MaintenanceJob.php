@@ -28,11 +28,13 @@ class AlternateHreflang_Kwc_Box_MaintenanceJob extends Kwf_Util_Maintenance_Job_
             $text .= "These urls were not reachable:\n";
             foreach ($errors as $link) {
                 $c = Kwf_Component_Data_Root::getInstance()->getComponentByDbId($link->component_id);
-                $name = $c->getPage()->getTitle();
-                if (!$name) {
-                    $name = $c->getPage()->name;
+                if ($c) {
+                    $name = $c->getPage()->getTitle();
+                    if (!$name) {
+                        $name = $c->getPage()->name;
+                    }
+                    $text .= $name.": ".$link->url."\n";
                 }
-                $text .= $name.": ".$link->url."\n";
             }
             $text .= "\nPlease check the links.";
             $mail = new Kwf_Mail();
