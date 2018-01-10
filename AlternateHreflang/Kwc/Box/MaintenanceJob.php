@@ -13,13 +13,42 @@ class AlternateHreflang_Kwc_Box_MaintenanceJob extends Kwf_Util_Maintenance_Job_
         $links = Kwf_Model_Abstract::getInstance('AlternateHreflang_Kwc_Box_Model')->getRows($s);
         $errors = array();
         foreach ($links as $link) {
-            $client = new Zend_Http_Client($link->url);
+            if ($link->url == 'https://www.volkswagen.de/de.html') continue;
+            if ($debug) {
+                echo $link->url . "\n";
+            }
             try {
-                $response = $client->request();
-                if ($response->getStatus() != 200) {
-                    $errors[] = $link;
+                $x = 0;
+                $finalLocation = null;
+                $location = $link->url;
+                while (!$finalLocation && $x < 5) {
+                    $client = new Zend_Http_Client($location, array('timeout' => 5, 'maxredirects' => 0)); // Use loop and maxredirects because there's no way to access the last set Location-Header
+                    $response = $client->request();
+                    if ($response->isRedirect()){
+                        $location = $response->getHeader('Location');
+                        $link->url = $location;
+                        $link->save();
+                        if ($debug) {
+                            echo '  Redirect to ' . $location . "\n";
+                        }
+                    } else {
+                        $finalLocation = $location;
+                        if ($response->isError()) {
+                            $errors[] = $link;
+                            if ($debug) {
+                                echo "  Not found\n";
+                            }
+                        } else {
+                            if ($debug) {
+                                echo "  Found\n";
+                            }
+                        }
+                    }
                 }
             } catch (Exception $e) {
+                if ($debug) {
+                    echo "  Error\n";
+                }
                 $errors[] = $link;
             }
         }
