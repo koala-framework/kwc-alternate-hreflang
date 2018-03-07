@@ -2,7 +2,7 @@
     "name": "koala-framework/kwc-alternate-hreflang",
     "description": "Koala Framework Component for adding alternate hreflang metatags",
     "require": {
-        "koala-framework/koala-framework": "~4.2"
+        "koala-framework/koala-framework": "~4.2 || ~5.0"
     },
     "extra": {
         "kwf-lingohub": {
