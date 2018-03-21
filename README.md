@@ -20,6 +20,3 @@ Add to config.ini:
 kwc.domains.at.alternateHreflang.languages.de-DE = Deutschland
 kwc.domains.at.alternateHreflang.emailreceiver = mhahn@improove.at
 ```
-
-#### Constraints
-Doesn't support domains yet.
