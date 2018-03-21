@@ -18,7 +18,7 @@ $ret['editComponents'][] = 'alternateHreflang';
 Add to config.ini:
 ```
 kwc.domains.at.alternateHreflang.languages.de-DE = Deutschland
-kwc.domains.at.alternateHreflang.emailreceiver = mhahn@improove.at
+kwc.domains.at.alternateHreflang.emailreceiver = me@example.com
 ```
 
 #### Constraints
