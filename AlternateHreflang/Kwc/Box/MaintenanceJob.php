@@ -34,15 +34,16 @@ class AlternateHreflang_Kwc_Box_MaintenanceJob extends Kwf_Util_Maintenance_Job_
                     if ($response->isRedirect()) {
                         $countRedirects++;
                         $location = $response->getHeader('Location');
-                        $link->url = $location;
-                        $link->save();
-                        if ($debug) echo "\n  Redirect to $location";
+                        if ($response->getStatus() == 301) {
+                            $link->url = $location;
+                            $link->save();
+                        }
+                        if ($debug) echo "\n  Redirect to $location (Status {$response->getStatus()})";
                     } else {
                         $finalLocation = $location;
                         if ($response->getStatus() != 200) {
                             if ($debug) echo "\n  Status {$response->getStatus()}";
                         } else {
-                            if ($debug) echo "\n  Success";
                             $isSuccessful = true;
                         }
                     }
