@@ -8,6 +8,15 @@ class AlternateHreflang_Kwc_Box_MaintenanceJob extends Kwf_Util_Maintenance_Job_
 
     public function execute($debug)
     {
+        $config = array(
+            'adapter' => 'Zend_Http_Client_Adapter_Curl',
+            'timeout' => 10,
+        );
+        if (Kwf_Config::getValue('http.proxy.host')) {
+            $config['proxy_host'] = Kwf_Config::getValue('http.proxy.host');
+            $config['proxy_port'] = Kwf_Config::getValue('http.proxy.port');
+        }
+
         $failedLinks = array();
         $errors = array();
 
@@ -24,29 +33,13 @@ class AlternateHreflang_Kwc_Box_MaintenanceJob extends Kwf_Util_Maintenance_Job_
             $isSuccessful = false;
             try {
                 if ($debug) echo $link->url;
-
-                $finalLocation = null;
                 $location = $link->url;
-                $countRedirects = 0;
-                while (!$finalLocation && $countRedirects < 5) {
-                    $client = new Zend_Http_Client($location, array('timeout' => 5, 'maxredirects' => 0)); // Use loop and maxredirects because there's no way to access the last set Location-Header
-                    $response = $client->request();
-                    if ($response->isRedirect()) {
-                        $countRedirects++;
-                        $location = $response->getHeader('Location');
-                        if ($response->getStatus() == 301) {
-                            $link->url = $location;
-                            $link->save();
-                        }
-                        if ($debug) echo "\n  Redirect to $location (Status {$response->getStatus()})";
-                    } else {
-                        $finalLocation = $location;
-                        if ($response->getStatus() != 200) {
-                            if ($debug) echo "\n  Status {$response->getStatus()}";
-                        } else {
-                            $isSuccessful = true;
-                        }
-                    }
+                $client = new Zend_Http_Client($location, $config);
+                $response = $client->request();
+                if ($response->getStatus() != 200) {
+                    if ($debug) echo "\n  Status {$response->getStatus()}";
+                } else {
+                    $isSuccessful = true;
                 }
             } catch (Exception $e) {
                 if ($debug) echo "\n  " . $e->getMessage();
