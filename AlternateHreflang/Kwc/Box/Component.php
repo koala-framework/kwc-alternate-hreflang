@@ -33,6 +33,11 @@ class AlternateHreflang_Kwc_Box_Component extends Kwc_Abstract implements Kwf_Ut
             }
         }
         $ret['currentLink'] = $this->getData()->getPage()->getAbsoluteUrl();
+        $language = $this->getData()->getBaseProperty('language');
+        if (!strpos($language, '-') && $this->getData()->getBaseProperty('country')) {
+            $language .= '-' . strtoupper($this->getData()->getBaseProperty('country'));
+        }
+        $ret['currentLanguage'] = $language;
         return $ret;
     }
 
