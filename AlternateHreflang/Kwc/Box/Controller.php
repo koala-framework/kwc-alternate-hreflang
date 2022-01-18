@@ -6,7 +6,7 @@ class AlternateHreflang_Kwc_Box_Controller extends Kwf_Controller_Action_Auto_Kw
     protected function _initColumns()
     {
         parent::_initColumns();
-        $component = Kwf_Component_Data_Root::getInstance()->getComponentById($this->_getParam('componentId'));
+        $component = Kwf_Component_Data_Root::getInstance()->getComponentById($this->_getParam('componentId'), array('ignoreVisible' => true));
         $languages = $component->getBaseProperty('alternateHreflang.languages');
         if ($languages) {
             $editor = new Kwf_Form_Field_Select();
